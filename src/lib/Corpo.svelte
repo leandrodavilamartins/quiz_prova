@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
   import { collection, getDocs } from "firebase/firestore";
 
-  let index = 20;
+  let index = 18;
   let questions = [];
   $: optionA = questions[index]?.optionA;
   $: optionB = questions[index]?.optionB;
@@ -28,7 +28,7 @@
 
 <main>
   <div class="flex-container">
-    {#if optionA}
+    {#if optionA != (undefined || "")}
       <div class="form-check">
         <div class="flex-item">
           <div>
@@ -49,7 +49,7 @@
         <br />
       </div>
     {/if}
-    {#if optionB}
+    {#if optionB != (undefined || "")}
       <div class="form-check">
         <div class="flex-item">
           <div>
@@ -71,7 +71,7 @@
         <br />
       </div>
     {/if}
-    {#if optionC}
+    {#if optionC != (undefined || "")}
       <div class="form-check">
         <div class="flex-item">
           <div>
@@ -93,7 +93,7 @@
         <br />
       </div>
     {/if}
-    {#if optionD}
+    {#if optionD != (undefined || "")}
       <div class="form-check">
         <div class="flex-item">
           <div>
@@ -115,7 +115,7 @@
         <br />
       </div>
     {/if}
-    {#if optionE}
+    {#if optionE != (undefined || "")}
       <div class="form-check">
         <div class="flex-item">
           <div>
