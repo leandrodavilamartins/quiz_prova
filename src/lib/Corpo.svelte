@@ -3,13 +3,19 @@
   import { onMount } from "svelte";
   import { collection, getDocs } from "firebase/firestore";
 
-  let index = 18;
+  let index = 22;
   let questions = [];
   $: optionA = questions[index]?.optionA;
   $: optionB = questions[index]?.optionB;
   $: optionC = questions[index]?.optionC;
   $: optionD = questions[index]?.optionD;
   $: optionE = questions[index]?.optionE;
+
+  function printEl() {
+    const el = document.querySelector("#enunc");
+    console.log(el);
+    el.innerHTML = questions[index]?.enunc;
+  }
 
   onMount(async () => {
     const res = await getDocs(collection(db, "questoes"));
@@ -19,6 +25,7 @@
       questions = [...questions, data.obj];
     });
     console.log(questions[index]?.enunc);
+    printEl();
   });
 
   function msg() {
@@ -27,6 +34,9 @@
 </script>
 
 <main>
+  <div>
+    <p id="enunc">{questions[index]?.enunc}</p>
+  </div>
   <div class="flex-container">
     {#if optionA != (undefined || "")}
       <div class="form-check">
@@ -154,6 +164,9 @@
   }
   .form-check-label {
     display: flex;
+    text-align: left;
+  }
+  #enunc {
     text-align: left;
   }
 </style>
