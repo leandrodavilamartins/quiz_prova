@@ -21,6 +21,7 @@
     const res = await getDocs(collection(db, "questoes"));
     console.log(res);
     res.forEach((doc) => {
+      //console.log(doc.id); //gets the document id
       let data = doc.data();
       questions = [...questions, data.obj];
     });
@@ -149,7 +150,24 @@
     {/if}
   </div>
 
-  <button on:click={msg}>Responder</button>
+  <div class="checkboxContainer">
+    <p><br /><br /></p>
+    <div class="form-check">
+      <div class="flex-item-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="defaultCheck1"
+        />
+        <label class="form-check-label" for="defaultCheck1">
+          &nbsp;&nbsp;Questão de revisão
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button on:click={msg}>Próxima</button>
 </main>
 
 <style>
@@ -168,5 +186,14 @@
   }
   #enunc {
     text-align: left;
+  }
+  .checkboxContainer {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .flex-item-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
   }
 </style>
